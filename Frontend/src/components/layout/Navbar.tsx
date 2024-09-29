@@ -6,7 +6,6 @@ export default function Navbar() {
   const { accounts } = useMsal();
   const account = accounts[0];
   const isAuthenticated = useIsAuthenticated();
-  console.log(account);
   return (
     <div className="flex w-full items-center justify-end h-14 py-3 px-4">
       {isAuthenticated ? (

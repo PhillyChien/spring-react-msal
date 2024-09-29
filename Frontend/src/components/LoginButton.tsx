@@ -2,7 +2,7 @@ import { useMsal } from "@azure/msal-react";
 
 import { loginRequest } from "../config/msalConfig";
 import { InteractionStatus } from "@azure/msal-browser";
-import Button from "./Button";
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 export default function LoginButton() {

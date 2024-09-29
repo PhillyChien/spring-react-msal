@@ -1,5 +1,5 @@
 import { useMsal } from "@azure/msal-react";
-import Button from "./Button";
+import Button from "@mui/material/Button";
 
 export default function LogoutButton() {
   const { instance } = useMsal();
