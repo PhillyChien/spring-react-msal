@@ -12,7 +12,7 @@ export const msalConfig: Configuration = {
     authority:
       "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_signupsignin", // Replace the placeholder with your tenant subdomain
     knownAuthorities: ["aifpocmsal.b2clogin.com"], // Mark your B2C tenant's domain as trusted.
-    redirectUri: "http://localhost:3000/redirect", // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
+    redirectUri: "http://localhost:3000", // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
     postLogoutRedirectUri: "/", // Indicates the page to navigate after logout.
     navigateToLoginRequestUrl: false, // If "true", will navigate back to the original request location before processing the auth code response.
   },
