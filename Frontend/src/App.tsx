@@ -1,3 +1,4 @@
+import LoginButton from "./components/LoginButton";
 import { useAppSelector, useAppDispatch } from "./redux/hook";
 import {
   decrement,
@@ -5,7 +6,7 @@ import {
   selectCounter,
 } from "./redux/slices/counter-slice";
 
-function App() {
+function Counter() {
   const counter = useAppSelector(selectCounter);
   const dispatch = useAppDispatch();
   return (
@@ -25,6 +26,15 @@ function App() {
           -
         </button>
       </p>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Counter />
+      <LoginButton />
     </div>
   );
 }

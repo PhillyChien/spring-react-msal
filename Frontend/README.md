@@ -1,50 +1,33 @@
-# React + TypeScript + Vite
+# Azure AD B2C React SPA Sample
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## How to use Azure AD B2C with React SPA?
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Offical documentation: https://learn.microsoft.com/en-us/azure/active-directory-b2c/configure-authentication-sample-react-spa-app
 
-## Expanding the ESLint configuration
+## What is Azure AD B2C?
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Customer Identity Management: Azure AD B2C allows businesses to manage customer identities for web and mobile apps. It supports millions of consumer accounts and provides self-service registration and login experiences.
 
-- Configure the top-level `parserOptions` property like this:
+- Customizable User Experience: You can fully customize the login, sign-up, and password reset processes with your own branding and user experience (UX) through custom HTML, CSS, and JavaScript.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Social and Local Account Authentication: It supports a variety of identity providers, including local accounts (username and password) as well as social providers like Google, Facebook, Microsoft, and LinkedIn.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- Security and Compliance: Azure AD B2C provides multi-factor authentication (MFA), advanced threat detection, and compliance with regulatory requirements like GDPR.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Integration with External APIs: You can extend authentication workflows by integrating with external APIs, allowing you to fetch additional data or enforce business rules during authentication processes.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Policy-Driven Configuration: Azure AD B2C allows you to define custom policies for authentication and authorization workflows, such as sign-up/sign-in, password reset, and profile editing.
+
+## v.s. CIAM (Customer Identity and Access Management)
+
+- External User Identity Management: CIAM handles external identities like customers or partners, allowing them to access resources while keeping internal users separate.
+
+- Self-Service Features: Allows external users to self-register, reset passwords, and manage their profiles.
+
+- Single Sign-On (SSO): Provides seamless access across multiple applications using a single identity.
+- Authentication and Authorization: Supports different authentication methods like multi-factor authentication (MFA), social logins (Google, Facebook, etc.), and standards-based authentication protocols (OAuth2, OpenID Connect, SAML).
+
+- Security: CIAM provides security features like access control, risk-based authentication, and identity protection.
+
+- Scalability and Performance: It is designed to handle large-scale customer bases with thousands or even millions of external users.
