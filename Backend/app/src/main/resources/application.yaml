@@ -1,0 +1,23 @@
+azure:
+  b2c:
+    tenant-name: aifpocmsal
+    tenant-id: 4b432575-4dfa-4694-a181-78c299dfbd04
+    client-id: 1e833b89-2753-4496-937e-8e90186d9167
+    jwk-set-uri: "https://${azure.b2c.tenant-name}.b2clogin.com/${azure.b2c.tenant-id}/discovery/v2.0/keys?p=B2C_1_login2"
+    valid-issuers:
+      - "https://${azure.b2c.tenant-name}.b2clogin.com/${azure.b2c.tenant-id}/v2.0/"
+      - "https://${azure.b2c.tenant-name}.b2clogin.com/${azure.b2c.tenant-id}/B2C_1_login2/v2.0/"
+      - "https://${azure.b2c.tenant-name}.b2clogin.com/${azure.b2c.tenant-id}/B2C_1_signup2/v2.0/"
+      # Add more issuers if needed
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: my_user
+    password: my_password
+    url: jdbc:mysql://localhost:3306/dev_todo_db?createDatabaseIfNotExist=true
+  jpa:
+      hibernate:
+          ddl-auto: update
+      show-sql: true
+      properties:
+          hibernate.format_sql: true
