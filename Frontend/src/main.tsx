@@ -10,6 +10,8 @@ import { msalConfig } from "./config/msalConfig.ts";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 
+await msalInstance.initialize();
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <MsalProvider instance={msalInstance}>

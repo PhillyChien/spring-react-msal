@@ -1,5 +1,5 @@
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
-import LoginButton from "../LoginButton";
+import LoginAndSignupButton from "../LoginAndSignupButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
@@ -25,12 +25,10 @@ export default function Navbar() {
           <IconButton onClick={toggleDrawer(true)}>
             <MenuIcon />
           </IconButton>
-          <UserDrawer open={open} toggleDrawer={toggleDrawer} />
+          <UserDrawer open={open} toggleDrawer={toggleDrawer(false)} />
         </>
       ) : (
-        <>
-          <LoginButton />
-        </>
+        <LoginAndSignupButton />
       )}
     </div>
   );

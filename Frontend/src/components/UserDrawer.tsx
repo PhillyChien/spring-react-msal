@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Drawer,
   List,
@@ -8,24 +9,28 @@ import {
   ListItemText,
 } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-import useLogout from "../hooks/useLogout";
-import { useMsal } from "@azure/msal-react";
+import PersonIcon from "@mui/icons-material/Person";
+import GroupIcon from "@mui/icons-material/Group";
+import { useLogout } from "../hooks/msalFlow";
+import { useAppSelector } from "../redux/hook";
+import { Role } from "../constants/role-enum";
+import { useNavigate } from "react-router-dom";
 
 interface UserDrawerProps {
   open: boolean;
-  toggleDrawer?: (open: boolean) => () => void;
+  toggleDrawer?: (open: boolean) => void;
 }
 
 export default function UserDrawer({ open, toggleDrawer }: UserDrawerProps) {
   const { handleLogout } = useLogout();
-  const { accounts } = useMsal();
-  const account = accounts[0];
+  const user = useAppSelector((state) => state.user);
+  const navigate = useNavigate();
   return (
-    account && (
+    user.userId && (
       <Drawer anchor="right" open={open} onClose={toggleDrawer}>
         <Box
           sx={{
-            width: 250,
+            width: 300,
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -33,10 +38,43 @@ export default function UserDrawer({ open, toggleDrawer }: UserDrawerProps) {
         >
           <List>
             <ListItem>
-              <Box>
-                <strong className="font-bold">{account.username}</strong>
-              </Box>
+              <div className="flex flex-col items-center justify-center w-full py-6">
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <strong className="font-bold pt-2">{user.email}</strong>
+              </div>
             </ListItem>
+
+            {[Role.USER].some((role) => user.roles.includes(role)) && (
+              <ListItem>
+                <ListItemButton
+                  onClick={() => {
+                    navigate("/user-profile");
+                  }}
+                >
+                  <ListItemIcon>
+                    <PersonIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="User Profile" />
+                </ListItemButton>
+              </ListItem>
+            )}
+            {[Role.ADMIN, Role.SUPER_ADMIN].some((role) =>
+              user.roles.includes(role)
+            ) && (
+              <ListItem>
+                <ListItemButton
+                  onClick={() => {
+                    navigate("/user-administration");
+                  }}
+                >
+                  <ListItemIcon>
+                    <GroupIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="User Administration" />
+                </ListItemButton>
+              </ListItem>
+            )}
+
             <ListItem>
               <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>

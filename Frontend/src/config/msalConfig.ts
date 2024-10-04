@@ -1,4 +1,4 @@
-import { Configuration, LogLevel } from "@azure/msal-browser";
+import { AccountInfo, Configuration, LogLevel } from "@azure/msal-browser";
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -8,9 +8,9 @@ import { Configuration, LogLevel } from "@azure/msal-browser";
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: "a467264c-b1d8-4855-84f6-6ce1ac8c505e", // This is the ONLY mandatory field that you need to supply.
+    clientId: "52fa7731-c3b5-4428-97e3-a67fccdc5567", // This is the ONLY mandatory field that you need to supply.
     authority:
-      "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_signupsignin", // Replace the placeholder with your tenant subdomain
+      "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login2", // Replace the placeholder with your tenant subdomain
     knownAuthorities: ["aifpocmsal.b2clogin.com"], // Mark your B2C tenant's domain as trusted.
     redirectUri: "http://localhost:3000", // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
     postLogoutRedirectUri: "/", // Indicates the page to navigate after logout.
@@ -53,6 +53,31 @@ export const msalConfig: Configuration = {
  * For more information about OIDC scopes, visit:
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
-export const loginRequest = {
-  scopes: ["openid", "profile", "email"],
+const tokenRequest = {
+  scopes: [
+    "openid",
+    "profile",
+    "email",
+    "https://aifpocmsal.onmicrosoft.com/1e833b89-2753-4496-937e-8e90186d9167/tasks.write",
+    "https://aifpocmsal.onmicrosoft.com/1e833b89-2753-4496-937e-8e90186d9167/tasks.read",
+  ],
 };
+
+const generateTokenRequest = (account: AccountInfo) => ({
+  ...tokenRequest,
+  account,
+});
+
+const loginRequest = {
+  ...tokenRequest,
+  authority:
+    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login2",
+};
+
+const signupRequest = {
+  ...tokenRequest,
+  authority:
+    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_signup2",
+};
+
+export { loginRequest, signupRequest, generateTokenRequest };
