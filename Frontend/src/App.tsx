@@ -9,7 +9,7 @@ import UserAdministration from "./pages/UserAdministration";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Layout children={undefined} />,
+    element: <Layout />,
     children: [
       {
         path: "/",
