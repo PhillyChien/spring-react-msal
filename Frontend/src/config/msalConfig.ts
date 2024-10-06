@@ -1,4 +1,9 @@
-import { AccountInfo, Configuration, LogLevel } from "@azure/msal-browser";
+import {
+  AccountInfo,
+  Configuration,
+  LogLevel,
+  PopupRequest,
+} from "@azure/msal-browser";
 
 /**
  * Configuration object to be passed to MSAL instance on creation.
@@ -53,7 +58,8 @@ export const msalConfig: Configuration = {
  * For more information about OIDC scopes, visit:
  * https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
  */
-const tokenRequest = {
+const tokenRequest: PopupRequest = {
+  prompt: "login",
   scopes: [
     "openid",
     "profile",

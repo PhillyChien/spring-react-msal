@@ -1,4 +1,8 @@
-import { AccountInfo, IPublicClientApplication } from "@azure/msal-browser";
+import {
+  AccountInfo,
+  InteractionRequiredAuthError,
+  IPublicClientApplication,
+} from "@azure/msal-browser";
 import axios from "axios";
 import { generateTokenRequest } from "./msalConfig";
 
@@ -17,17 +21,21 @@ const setupAcquireTokenInterceptor = (
   const interceptorId = axiosInstance.interceptors.request.use(
     async (config) => {
       try {
-        console.log("Acquiring token silently");
         const response = await msalInstance.acquireTokenSilent(
           generateTokenRequest(accounts[0])
         );
 
         const token = response.accessToken;
-
         if (token && config.headers) {
           config.headers.Authorization = `Bearer ${token}`;
         }
       } catch (error) {
+        if (error instanceof InteractionRequiredAuthError) {
+          msalInstance.acquireTokenPopup({
+            ...generateTokenRequest(accounts[0]),
+            prompt: "select_account",
+          });
+        }
         console.error("Failed to acquire token: ", error);
         throw error;
       }
