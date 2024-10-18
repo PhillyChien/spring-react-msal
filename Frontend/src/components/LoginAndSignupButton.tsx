@@ -1,5 +1,6 @@
 import Button from "@mui/material/Button";
 import { useLogin, useSignup } from "../hooks/msalFlow";
+import { Box } from "@mui/material";
 
 export default function LoginAndSignupButton() {
   const { loading: loginLoading, loginHandle } = useLogin();
@@ -22,7 +23,7 @@ export default function LoginAndSignupButton() {
   }
 
   return (
-    <>
+    <Box>
       <Button
         onClick={loginHandle}
         className="bg-black text-white mr-1.5 hover:bg-gray-700"
@@ -35,6 +36,6 @@ export default function LoginAndSignupButton() {
       >
         Signup
       </Button>
-    </>
+    </Box>
   );
 }

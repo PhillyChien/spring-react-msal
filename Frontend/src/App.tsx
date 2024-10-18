@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/Home";
-import Layout from "./components/layout";
+import Layout from "./components/layout/Layout";
 import useAcquireToken from "./hooks/useAcquireToken";
 import useMe from "./hooks/useMe";
 import UserProfile from "./pages/UserProfile";

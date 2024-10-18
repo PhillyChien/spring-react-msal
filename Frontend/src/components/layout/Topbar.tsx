@@ -4,7 +4,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
 import { useState } from "react";
 import UserDrawer from "../UserDrawer";
-import BreadCrumbs from "./Breadcrumbs";
+import BreadCrumbs from "./BreadCrumbs";
 
 export default function Topbar() {
   const isAuthenticated = useIsAuthenticated();
@@ -15,7 +15,7 @@ export default function Topbar() {
   };
 
   return (
-    <div className="flex w-full items-center justify-between h-14 py-3 px-4">
+    <header className="flex w-full items-center justify-between h-14 py-3 px-4">
       {isAuthenticated ? (
         <>
           <BreadCrumbs />
@@ -25,8 +25,11 @@ export default function Topbar() {
           <UserDrawer open={open} toggleDrawer={toggleDrawer(false)} />
         </>
       ) : (
-        <LoginAndSignupButton />
+        <>
+          <div></div>
+          <LoginAndSignupButton />
+        </>
       )}
-    </div>
+    </header>
   );
 }

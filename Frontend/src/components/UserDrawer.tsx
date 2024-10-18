@@ -39,17 +39,19 @@ export default function UserDrawer({ open, toggleDrawer }: UserDrawerProps) {
           <List>
             <ListItem>
               <div className="flex flex-col items-center justify-center w-full py-6">
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar
+                  alt={`${user.email}'s avatar`}
+                  src="/static/images/avatar/1.jpg"
+                />
                 <strong className="font-bold pt-2">{user.email}</strong>
               </div>
             </ListItem>
 
-            {[Role.USER].some((role) => user.roles.includes(role)) && (
+            {user.roles.includes(Role.USER) && (
               <ListItem>
                 <ListItemButton
-                  onClick={() => {
-                    navigate("/user-profile");
-                  }}
+                  onClick={() => navigate("/user-profile")}
+                  aria-label="Go to user profile"
                 >
                   <ListItemIcon>
                     <PersonIcon />
