@@ -15,7 +15,7 @@ export const msalConfig: Configuration = {
   auth: {
     clientId: "52fa7731-c3b5-4428-97e3-a67fccdc5567", // This is the ONLY mandatory field that you need to supply.
     authority:
-      "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login2", // Replace the placeholder with your tenant subdomain
+      "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login3", // Replace the placeholder with your tenant subdomain
     knownAuthorities: ["aifpocmsal.b2clogin.com"], // Mark your B2C tenant's domain as trusted.
     redirectUri: "http://localhost:3000", // Points to window.location.origin. You must register this URI on Microsoft Entra admin center/App Registration.
     postLogoutRedirectUri: "/", // Indicates the page to navigate after logout.
@@ -60,13 +60,7 @@ export const msalConfig: Configuration = {
  */
 const tokenRequest: PopupRequest = {
   prompt: "login",
-  scopes: [
-    "openid",
-    "profile",
-    "email",
-    "https://aifpocmsal.onmicrosoft.com/1e833b89-2753-4496-937e-8e90186d9167/tasks.write",
-    "https://aifpocmsal.onmicrosoft.com/1e833b89-2753-4496-937e-8e90186d9167/tasks.read",
-  ],
+  scopes: [],
 };
 
 const generateTokenRequest = (account: AccountInfo) => ({
@@ -77,13 +71,13 @@ const generateTokenRequest = (account: AccountInfo) => ({
 const loginRequest = {
   ...tokenRequest,
   authority:
-    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login2",
+    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_login3",
 };
 
 const signupRequest = {
   ...tokenRequest,
   authority:
-    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_signup2",
+    "https://aifpocmsal.b2clogin.com/aifpocmsal.onmicrosoft.com/B2C_1_signup3",
 };
 
 export { loginRequest, signupRequest, generateTokenRequest };

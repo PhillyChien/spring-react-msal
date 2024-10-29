@@ -25,6 +25,8 @@ const setupAcquireTokenInterceptor = (
           generateTokenRequest(accounts[0])
         );
 
+        const idToken = response.idToken;
+        console.log("idToken", idToken);
         const token = response.accessToken;
         if (token && config.headers) {
           config.headers.Authorization = `Bearer ${token}`;
